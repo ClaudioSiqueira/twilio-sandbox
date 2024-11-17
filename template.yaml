@@ -13,7 +13,14 @@ Resources:
         Variables:
           TWILIO_ACCOUNT_SID: !Ref TwilioAccountSid
           TWILIO_AUTH_TOKEN: !Ref TwilioAuthToken
-          
+      Policies:
+        - Statement:
+            Effect: Allow
+            Action:
+              - ses:SendEmail         # Permissão para enviar e-mail
+              - ses:SendRawEmail      # Permissão para enviar e-mails brutos
+            Resource: "*"
+
 Parameters:
   TwilioAccountSid:
     Type: String

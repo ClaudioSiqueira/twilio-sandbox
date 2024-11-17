@@ -1,35 +1,30 @@
-import twilio from 'twilio';
+import { sendWhatsappMessage } from './services/twilioService.js';
+import { sendEmail } from './services/sesService.js';
 
 export const handler = async (event) => {
   try {
-    // Credenciais Twilio obtidas de variáveis de ambiente
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const client = twilio(accountSid, authToken);
+    const fromWhatsapp = 'whatsapp:+14155238886'; 
+    const toWhatsapp = 'whatsapp:+5511940450348'; 
+    const messageBody = 'Isso é um teste com variáveis de ambiente dentro da lambda';
 
-    // Parâmetros da mensagem
-    const from = 'whatsapp:+14155238886'; // Número Twilio habilitado para WhatsApp
-    const to = 'whatsapp:+5511940450348'; // Número de destino no formato internacional
-    const body = 'Isso é um teste com variaveis de ambiente dentro da lambda'; // Mensagem que será enviada
+    // Enviar a mensagem via WhatsApp
+    //const sid = await sendWhatsappMessage(fromWhatsapp, toWhatsapp, messageBody);
 
-    // Envia a mensagem
-    const message = await client.messages.create({
-      from,
-      to,
-      body,
-    });
+    // Enviar um email de confirmação via SES
+    const subject = 'Notificação de Mensagem Enviada';
+    const bodyText = `A mensagem foi enviada com sucesso para o WhatsApp. SID da mensagem: sid`;
+    const bodyHtml = `<h1>A mensagem foi enviada com sucesso!</h1><p>SID da mensagem: sid</p>`;
 
-    // Resposta de sucesso
+    await sendEmail(subject, bodyText, bodyHtml);
+
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Message sent successfully!',
-        sid: message.sid,
+        message: 'Message sent via WhatsApp and email successfully!'
       }),
     };
   } catch (error) {
-    // Trata erros e retorna resposta
-    console.error('Error sending message:', error);
+    console.error('Error in handler:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({
