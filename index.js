@@ -1,26 +1,34 @@
 import { sendWhatsappMessage } from './services/twilioService.js';
-import { sendEmail } from './services/sesService.js';
+import { sendOrderConfirmationEmail } from './services/orderService.js'; // Importando a função de envio de email do pedido
 
 export const handler = async (event) => {
   try {
-    const fromWhatsapp = 'whatsapp:+14155238886'; 
-    const toWhatsapp = 'whatsapp:+5511940450348'; 
-    const messageBody = 'Isso é um teste com variáveis de ambiente dentro da lambda';
+    // Dados fictícios para o pedido
+    const buyer = {
+      name: 'João Silva',
+      phone: '(11) 99999-9999',
+      address: 'Rua Fictícia, 123, São Paulo, SP',
+      email: 'joao.silva@email.com',
+    };
 
-    // Enviar a mensagem via WhatsApp
+    const items = [
+      { name: 'Marmita de Frango', quantity: 2, price: 20.0 },
+      { name: 'Marmita de Carne', quantity: 1, price: 25.0 },
+    ];
+
+    // Enviar confirmação de pedido via email
+    await sendOrderConfirmationEmail(buyer, items);
+
+    // Exemplo de enviar mensagem via WhatsApp
+    //const fromWhatsapp = 'whatsapp:+14155238886';
+    //const toWhatsapp = 'whatsapp:+5511940450348';
+    //const messageBody = 'Isso é um teste com variáveis de ambiente dentro da lambda';
     //const sid = await sendWhatsappMessage(fromWhatsapp, toWhatsapp, messageBody);
-
-    // Enviar um email de confirmação via SES
-    const subject = 'Notificação de Mensagem Enviada';
-    const bodyText = `A mensagem foi enviada com sucesso para o WhatsApp. SID da mensagem: sid`;
-    const bodyHtml = `<h1>A mensagem foi enviada com sucesso!</h1><p>SID da mensagem: sid</p>`;
-
-    await sendEmail(subject, bodyText, bodyHtml);
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Message sent via WhatsApp and email successfully!'
+        message: 'Pedido confirmado por email com sucesso!'
       }),
     };
   } catch (error) {
@@ -28,7 +36,7 @@ export const handler = async (event) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: 'Failed to send message',
+        error: 'Falha ao confirmar o pedido por email',
         details: error.message,
       }),
     };
