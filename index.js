@@ -1,7 +1,10 @@
 import { sendWhatsappMessage } from './services/twilioService.js';
-import { sendOrderConfirmationEmail } from './services/orderService.js'; // Importando a função de envio de email do pedido
+import { sendOrderConfirmationEmail } from './services/orderService.js';
 
 export const handler = async (event) => {
+
+  const userMessage = event.body; // A mensagem do usuário
+
   try {
     // Dados fictícios para o pedido
     const buyer = {
@@ -16,19 +19,18 @@ export const handler = async (event) => {
       { name: 'Marmita de Carne', quantity: 1, price: 25.0 },
     ];
 
-    // Enviar confirmação de pedido via email
     await sendOrderConfirmationEmail(buyer, items);
 
-    // Exemplo de enviar mensagem via WhatsApp
-    //const fromWhatsapp = 'whatsapp:+14155238886';
-    //const toWhatsapp = 'whatsapp:+5511940450348';
-    //const messageBody = 'Isso é um teste com variáveis de ambiente dentro da lambda';
-    //const sid = await sendWhatsappMessage(fromWhatsapp, toWhatsapp, messageBody);
+    const fromWhatsapp = 'whatsapp:+14155238886';
+    const toWhatsapp = 'whatsapp:+5511940450348';
+    const messageBody = 'Isso é um teste com variáveis de ambiente dentro da lambda';
+    
+    await sendWhatsappMessage(fromWhatsapp, toWhatsapp, messageBody);
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Pedido confirmado por email com sucesso!'
+        event
       }),
     };
   } catch (error) {

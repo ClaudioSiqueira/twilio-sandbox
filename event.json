@@ -1,0 +1,41 @@
+{
+  "version": "2.0",
+  "routeKey": "$default",
+  "rawPath": "/",
+  "rawQueryString": "",
+  "headers": {
+    "content-length": "175",
+    "x-amzn-tls-version": "TLSv1.3",
+    "x-forwarded-proto": "https",
+    "postman-token": "c3da13ed-99dd-4582-a0ec-836a81c4e1dc",
+    "x-forwarded-port": "443",
+    "x-forwarded-for": "187.11.45.76",
+    "accept": "*/*",
+    "x-amzn-tls-cipher-suite": "TLS_AES_128_GCM_SHA256",
+    "x-amzn-trace-id": "Root=1-673a9799-64965b091ec0256d4d291b57",
+    "host": "a3rqi24js6va57pyln74hk7a5i0iganj.lambda-url.us-east-1.on.aws",
+    "content-type": "application/json",
+    "accept-encoding": "gzip, deflate, br",
+    "user-agent": "PostmanRuntime/7.42.0"
+  },
+  "requestContext": {
+    "accountId": "anonymous",
+    "apiId": "a3rqi24js6va57pyln74hk7a5i0iganj",
+    "domainName": "a3rqi24js6va57pyln74hk7a5i0iganj.lambda-url.us-east-1.on.aws",
+    "domainPrefix": "a3rqi24js6va57pyln74hk7a5i0iganj",
+    "http": {
+      "method": "POST",
+      "path": "/",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "187.11.45.76",
+      "userAgent": "PostmanRuntime/7.42.0"
+    },
+    "requestId": "42c1a68d-a88b-4598-aebb-3613c7d16729",
+    "routeKey": "$default",
+    "stage": "$default",
+    "time": "18/Nov/2024:01:25:45 +0000",
+    "timeEpoch": 1731893145211
+  },
+  "body": "{\r\n  \"SmsMessageSid\": \"SMXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\r\n  \"To\": \"whatsapp:+14155238886\",\r\n  \"From\": \"whatsapp:+5511940450348\",\r\n  \"Body\": \"Enviando msg pelo postman\"\r\n}\r\n",
+  "isBase64Encoded": false
+}

@@ -1,0 +1,25 @@
+{
+    "configurations": [
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "twilio-sandbox:index.handler (nodejs20.x)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "${workspaceFolder}/",
+          "lambdaHandler": "index.handler"
+        },
+        "lambda": {
+          "runtime": "nodejs20.x",
+          "payload": {
+            "path": "${workspaceFolder}/event.json"
+          },
+          "environmentVariables": {
+            "TWILIO_ACCOUNT_SID": "{TWILIO_ACCOUNT_SID}",
+            "TWILIO_AUTH_TOKEN": "{TWILIO_AUTH_TOKEN}"
+          }
+        }
+      }
+    ]
+  }
+  
