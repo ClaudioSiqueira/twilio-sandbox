@@ -1,15 +1,12 @@
-import { sendEmail } from './sesService.js';  // Importa a função de envio de email
+import { sendEmail } from './sesService.js';
 
-// Função para enviar o email de confirmação de pedido
 export const sendOrderConfirmationEmail = async (buyer, items) => {
   try {
-    // Calculando o valor total
     let totalValue = 0;
     items.forEach(item => {
       totalValue += item.quantity * item.price;
     });
 
-    // Montando a tabela de marmitas (em HTML)
     let tableRows = '';
     items.forEach(item => {
       tableRows += `
@@ -22,7 +19,6 @@ export const sendOrderConfirmationEmail = async (buyer, items) => {
       `;
     });
 
-    // Corpo do email em HTML com estilos CSS
     const emailBodyHtml = `
       <style>
         body {
@@ -115,7 +111,6 @@ export const sendOrderConfirmationEmail = async (buyer, items) => {
       </div>
     `;
 
-    // Corpo do email em texto simples
     const emailBodyText = `
       Confirmação de Pedido de Marmita
 
@@ -131,7 +126,6 @@ export const sendOrderConfirmationEmail = async (buyer, items) => {
       Obrigado por comprar conosco!
     `;
 
-    // Enviando o email usando o serviço SES
     await sendEmail('Confirmação do Pedido de Marmita', emailBodyText, emailBodyHtml);
 
     console.log('Email enviado com sucesso!');
