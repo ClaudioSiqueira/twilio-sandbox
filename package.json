@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "aws-sdk": "^2.1692.0",
+    "axios": "^1.7.7",
     "twilio": "^5.3.6"
   }
 }

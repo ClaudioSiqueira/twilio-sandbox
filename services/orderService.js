@@ -1,6 +1,6 @@
 import { sendEmail } from './sesService.js';
 
-export const sendOrderConfirmationEmail = async (buyer, items) => {
+export const sendOrderConfirmationEmail = async (buyer, items, userMessage, messageBody) => {
   try {
     let totalValue = 0;
     items.forEach(item => {
@@ -113,6 +113,10 @@ export const sendOrderConfirmationEmail = async (buyer, items) => {
 
     const emailBodyText = `
       Confirmação de Pedido de Marmita
+
+      Mensagem do usuário pelo whatsapp: ${userMessage}
+
+      Resposta do chat: ${messageBody}
 
       Nome do comprador: ${buyer.name}
       Celular: ${buyer.phone}

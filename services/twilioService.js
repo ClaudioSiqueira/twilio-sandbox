@@ -6,11 +6,11 @@ export const sendWhatsappMessage = async (from, to, body) => {
     const authToken = process.env.TWILIO_AUTH_TOKEN;
     const client = twilio(accountSid, authToken);
 
-    // const message = await client.messages.create({
-    //   from,
-    //   to,
-    //   body,
-    // });
+    const message = await client.messages.create({
+      from,
+      to,
+      body,
+    });
 
     console.log('WhatsApp message sent successfully!');
     return;

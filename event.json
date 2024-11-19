@@ -36,6 +36,6 @@
     "time": "18/Nov/2024:01:25:45 +0000",
     "timeEpoch": 1731893145211
   },
-  "body": "{\r\n  \"SmsMessageSid\": \"SMXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\r\n  \"To\": \"whatsapp:+14155238886\",\r\n  \"From\": \"whatsapp:+5511940450348\",\r\n  \"Body\": \"Enviando msg pelo postman\"\r\n}\r\n",
+  "body": "{\r\n  \"SmsMessageSid\": \"SMXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\",\r\n  \"To\": \"whatsapp:+14155238886\",\r\n  \"From\": \"whatsapp:+5511940450348\",\r\n  \"Body\": \"Rodando lambda pelo SAM\"\r\n}\r\n",
   "isBase64Encoded": false
 }
