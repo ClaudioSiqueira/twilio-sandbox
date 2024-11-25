@@ -8,7 +8,7 @@ Resources:
       Handler: index.handler      # Referência para a função exportada no index.js
       Runtime: nodejs20.x         # Versão do Node.js que sua Lambda usa
       MemorySize: 128
-      Timeout: 10
+      Timeout: 30
       Environment:
         Variables:
           TWILIO_ACCOUNT_SID: !Ref TwilioAccountSid
