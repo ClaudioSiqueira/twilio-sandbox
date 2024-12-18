@@ -81,7 +81,7 @@ const parseOrderFromUserMessage = async (userMessage) => {
     Sua tarefa é interpretar essa mensagem e retornar um código que indique o que o usuário deseja fazer.
 
     Retorne:
-    - "1" se o usuário está fazendo um pedido (ou seja, mencionando marmitas ou comida).
+    - "1" se o usuário está fazendo um pedido (ou seja, mencionando marmitas ou comida), ou apenas mandou uma mensagem que indique que iniciará um diálogo (ou seja, "Olá", "Oi", etc).
     - "2" se o usuário está confirmando o pedido (resposta com "sim").
     - "3" se o usuário está cancelando o pedido (resposta com "não").
     - "0" se não for possível entender o pedido ou se for irrelevante.
@@ -114,10 +114,4 @@ const parseOrderFromUserMessage = async (userMessage) => {
     console.error('Error parsing OpenAI response:', error);
     return 0;
   }
-};
-
-// Função auxiliar para extrair quantidades
-const extractQuantity = (message, itemName) => {
-  const match = message.match(new RegExp(`(\\d+)\\s*${itemName}`, 'i'));
-  return match ? parseInt(match[1]) : 1; // Padrão: 1 unidade, se não especificado
 };
